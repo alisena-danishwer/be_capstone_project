@@ -1,12 +1,8 @@
-from django.urls import path, include
+# posts/urls.py
+from django.urls import path
+from .views import PostListCreateView, PostDetailView
 
 urlpatterns = [
-    path("", home),
-    path("admin/", admin.site.urls),
-
-    # Accounts
-    path("api/auth/", include("accounts.urls")),
-
-    # Posts
-    path("api/posts/", include("posts.urls")),
+    path("", PostListCreateView.as_view(), name="post-list-create"),   # /api/posts/
+    path("<int:pk>/", PostDetailView.as_view(), name="post-detail"),   # /api/posts/1/
 ]
